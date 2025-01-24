@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    image: nextjs14-app
+    container_name: nextjs14-container
+    working_dir: /app
+    volumes:
+      - .:/app # Sync files between host and container
+      - /app/node_modules # Avoid overwriting node_modules
+    ports:
+      - "3000:3000" # Map container port to host port
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
